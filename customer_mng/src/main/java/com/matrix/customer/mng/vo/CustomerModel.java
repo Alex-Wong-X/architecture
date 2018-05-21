@@ -1,21 +1,14 @@
 package com.matrix.customer.mng.vo;
 
-public class CustomerModel {
+import com.matrix.vo.BaseModel;
+
+public class CustomerModel extends BaseModel{
 	
-	private Integer uuid;
 	private String customerId;
 	private String pwd;
 	private String showName;
 	private String trueName;
 	private String registerTime;
-
-	public Integer getUuid() {
-		return uuid;
-	}
-
-	public void setUuid(Integer uuid) {
-		this.uuid = uuid;
-	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -59,7 +52,7 @@ public class CustomerModel {
 
 	@Override
 	public String toString() {
-		return "CustomerModel [uuid=" + uuid + ", customerId=" + customerId + ", pwd=" + pwd + ", showName=" + showName
+		return "CustomerModel [uuid=" + getUuid() + ", customerId=" + customerId + ", pwd=" + pwd + ", showName=" + showName
 				+ ", trueName=" + trueName + ", registerTime=" + registerTime + "]";
 	}
 	

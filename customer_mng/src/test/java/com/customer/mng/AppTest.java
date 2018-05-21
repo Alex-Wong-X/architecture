@@ -1,38 +1,43 @@
 package com.customer.mng;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import java.util.List;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+import com.matrix.customer.mng.dao.CustomerDAO;
+import com.matrix.customer.mng.service.ICustomerService;
+import com.matrix.customer.mng.vo.CustomerModel;
+import com.matrix.customer.mng.vo.CustomerQueryModel;
+import com.matrix.pageUtil.Page;
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:applicationContext.xml", "classpath:mybatis.cfg.xml" })
+public class AppTest {
+	@Autowired
+	private ICustomerService service = null;
+
+	//@Test
+	public void create() {
+		CustomerModel cm = new CustomerModel();
+		cm.setCustomerId("c1");
+		cm.setPwd("123");
+		cm.setRegisterTime("2018-01-01");
+		cm.setShowName("c1");
+		cm.setTrueName("张三");
+		service.create(cm);
+	}
+
+
+	@Test
+	public void getByCondition() {
+		CustomerQueryModel cqm = new CustomerQueryModel();
+		cqm.getPage().setNowPage(1);
+		Page<CustomerModel> page = service.getByConditionPage(cqm);
+		System.out.println(page);
+	}
+
 }
