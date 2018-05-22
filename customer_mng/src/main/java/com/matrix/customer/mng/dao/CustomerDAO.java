@@ -8,4 +8,5 @@ import com.matrix.dao.BaseDAO;
 
 @Repository
 public interface CustomerDAO extends BaseDAO<CustomerModel,CustomerQueryModel>{
+	public CustomerModel getByCustomerId(String customerId);
 }

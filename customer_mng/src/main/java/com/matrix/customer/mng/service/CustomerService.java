@@ -16,4 +16,10 @@ public class CustomerService extends BaseService<CustomerModel, CustomerQueryMod
 		this.dao = dao;
 		super.setDAO(dao);
 	}
+
+	@Override
+	public CustomerModel getByCustomerId(String customerId) {
+		
+		return dao.getByCustomerId(customerId);
+	}
 }
